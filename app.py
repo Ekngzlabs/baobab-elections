@@ -25,17 +25,19 @@ DB_PATH = "election.db"
 ADMIN_PASSCODE = "BIT 15"  # change this before you deploy!
 
 DEFAULT_POSITIONS = {
-    "Student Union President": [
-        ("Amina Rashidi", "3rd Year, Business IT"),
-        ("Godwin Mushi", "2nd Year, Software Eng."),
+    "President": [
+        ("Raphael Mugama", "CMT"),
+        ("David Magor", " SAT"),
+        ("Jimila Miraj","PST")
     ],
     "Vice President": [
-        ("Neema Kileo", "2nd Year, AI & ML"),
-        ("Baraka Ndosi", "1st Year, Networking"),
+        ("Angel Mwabulambo", " PST"),
+        ("Enock Rwekaza", " SAT"),
+        ("Miraj Makanza","SAT" )
     ],
-    "Academic Affairs Secretary": [
-        ("Furaha Mwakalinga", "3rd Year, Cybersecurity"),
-        ("Yusuf Kambona", "2nd Year, AI & ML"),
+    "Genaral Secretary": [
+        ("Fatuma", "CMT"),
+        ("Jafari Cletus", "SAT"),
     ],
 }
 
