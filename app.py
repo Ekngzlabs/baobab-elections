@@ -197,8 +197,50 @@ if "has_voted" not in st.session_state:
 if "admin_unlocked" not in st.session_state:
     st.session_state.admin_unlocked = False
 
-st.title("🗳️ Baobab College Elections")
-st.caption("2026 Student Union · one vote per registration number")
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+h1, h2, h3 {
+    font-family: 'Fraunces', serif !important;
+    color: #1B2A2A;
+}
+[data-testid="stSidebar"] {
+    background-color: #EFE7D2;
+    border-right: 1px solid rgba(27,42,42,0.12);
+}
+.stButton > button {
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+.baobab-header { display: flex; align-items: center; gap: 14px; padding: 6px 0 2px; }
+.baobab-subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #6E6657;
+    margin-top: -6px;
+}
+</style>
+<div class="baobab-header">
+  <svg width="46" height="46" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="32" cy="18" rx="20" ry="14" fill="#1F6F4B"/>
+    <ellipse cx="18" cy="14" rx="10" ry="8" fill="#2f8a60"/>
+    <ellipse cx="46" cy="14" rx="10" ry="8" fill="#2f8a60"/>
+    <rect x="27" y="28" width="10" height="24" rx="3" fill="#8a5a2e"/>
+    <ellipse cx="32" cy="54" rx="16" ry="4" fill="#C99A2E" opacity="0.5"/>
+  </svg>
+  <div>
+    <h1 style="margin-bottom:0;">Baobab College Elections</h1>
+    <div class="baobab-subtitle">2026 Student Union &middot; one vote per registration number</div>
+  </div>
+</div>
+""", unsafe_allow_html=True)
 
 page = st.sidebar.radio(
     "Navigate",
