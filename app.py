@@ -242,11 +242,20 @@ h1, h2, h3 {
 </div>
 """, unsafe_allow_html=True)
 
-page = st.sidebar.radio(
-    "Navigate",
-    ["Register", "Sign in", "Cast ballot", "Results", "Admin"],
-    index=0,
-)
+PAGES = ["Register", "Sign in", "Cast ballot", "Results", "Admin"]
+if "nav" not in st.session_state:
+    st.session_state.nav = "Register"
+
+# If a previous run asked to jump pages, apply it now — BEFORE the
+# radio widget below is created. This is the only safe time to change it.
+if "requested_nav" in st.session_state:
+    st.session_state.nav = st.session_state.pop("requested_nav")
+
+page = st.sidebar.radio("Navigate", PAGES, key="nav")
+
+if "flash" in st.session_state:
+    kind, msg = st.session_state.pop("flash")
+    (st.success if kind == "success" else st.error)(msg)
 
 if st.session_state.reg_no:
     st.sidebar.markdown("---")
@@ -280,7 +289,12 @@ if page == "Register":
             st.error("Passwords do not match.")
         else:
             ok, msg = register_student(reg_norm, pw)
-            (st.success if ok else st.error)(msg)
+            if ok:
+                st.session_state.flash = ("success", msg)
+                st.session_state.requested_nav = "Sign in"
+                st.rerun()
+            else:
+                st.error(msg)
 
     st.caption(
         "Passwords are hashed (SHA-256) before they're stored — the plain "
@@ -305,7 +319,8 @@ elif page == "Sign in":
         else:
             st.session_state.reg_no = reg_norm
             st.session_state.has_voted = bool(student[2])
-            st.success(f"Signed in as {reg_norm}.")
+            st.session_state.flash = ("success", f"Signed in as {reg_norm}.")
+            st.session_state.requested_nav = "Cast ballot"
             st.rerun()
 
 # ---------- Cast ballot ----------
