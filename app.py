@@ -187,7 +187,7 @@ def add_position(position):
 
 # ----------------------------- Streamlit UI -----------------------------
 
-st.set_page_config(page_title="Baobab College Elections", page_icon="🗳️", layout="centered")
+st.set_page_config(page_title="Baobab Institute Of Tanzania Elections", page_icon="🗳️", layout="centered")
 init_db()
 
 if "reg_no" not in st.session_state:
